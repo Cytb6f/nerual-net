@@ -11,6 +11,8 @@ const std::string       costfile2 = "cost2.txt";        //成本数据地址
 const std::string       costfile3 = "cost3.txt";        //成本数据地址
 const std::string       costfile4 = "cost4.txt";        //成本数据地址
 
+const double alpha = 0.001;
+const int    trainnum = 5000;
 std::vector<unsigned long> layernode= {2, 6,16, 1};
 
 void f1() {
@@ -18,8 +20,8 @@ void f1() {
 	bpnn.load_trainset(trainfile);
 	bpnn.set_layernum(layernode.size());
 	bpnn.set_layernode(layernode);
-	bpnn.set_alpha(0.001);
-	bpnn.train(5000, (train_type)1);
+	bpnn.set_alpha(alpha);
+	bpnn.train(trainnum, (train_type)1);
 	bpnn.download(costfile1);
 	return;
 }
@@ -28,8 +30,8 @@ void f2() {
 	bpnn.load_trainset(trainfile);
 	bpnn.set_layernum(layernode.size());
 	bpnn.set_layernode(layernode);
-	bpnn.set_alpha(0.001);
-	bpnn.train(5000, (train_type)2);
+	bpnn.set_alpha(alpha);
+	bpnn.train(trainnum, (train_type)2);
 	bpnn.download(costfile2);
 	return;
 }
@@ -38,8 +40,8 @@ void f3() {
 	bpnn.load_trainset(trainfile);
 	bpnn.set_layernum(layernode.size());
 	bpnn.set_layernode(layernode);
-	bpnn.set_alpha(0.001);
-	bpnn.train(5000, (train_type)3);
+	bpnn.set_alpha(alpha);
+	bpnn.train(trainnum, (train_type)3);
 	bpnn.download(costfile3);
 	return;
 }
@@ -48,8 +50,8 @@ void f4() {
 	bpnn.load_trainset(trainfile);
 	bpnn.set_layernum(layernode.size());
 	bpnn.set_layernode(layernode);
-	bpnn.set_alpha(0.001);
-	bpnn.train(5000, (train_type)4);
+	bpnn.set_alpha(alpha);
+	bpnn.train(trainnum, (train_type)4);
 	bpnn.download(costfile4);
 	return;
 }
