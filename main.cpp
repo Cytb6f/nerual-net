@@ -14,7 +14,7 @@ const std::string       costfile4 = "cost4.txt";        //成本数据地址
 
 //一些超参数
 const double alpha    =  0.001;
-const int    trainnum =  7300;
+const int    trainnum =  9000;
 std::vector<unsigned long> layernode= {2, 6,16, 1};
 
 void f1() {

@@ -101,7 +101,28 @@ void net::reset_delta(void) {
     return;
 }
 void net::train_normalization(void) {
-
+    /*-------------均值归一化-------------*/
+    double mean = 0;
+    for (auto &a : trainset) {
+        for (auto &b : a.in)
+            mean += b;
+    }
+    mean /= trainset.size() * (trainset[0].in.size());
+    for (auto &a : trainset) {
+        for (auto &b : a.in)
+            b -= mean;
+    }
+    /*-------------方差归一化-------------*/
+    double var = 0;
+    for (auto &a : trainset) {
+        for (auto &b : a.in)
+            var += b*b;
+    }
+    var /= trainset.size() * (trainset[0].in.size());
+    for (auto &a : trainset) {
+        for (auto &b : a.in)
+            b /= var;
+    }
     return;
 }
 void net::test_normalization(void) {
@@ -172,9 +193,15 @@ bool net::init() {
             layer[i][j]->v_bias_delta = 0.0;
             if (i + 1 == layernum)
                 continue;
+            double res;
+            if (i + 2 == layernum)
+                res = sqrt(1.0 / layernode[i]);
+            else
+                res = sqrt(2.0 / layernode[i]);
+
             for (int k = 0; k < layernode[i + 1]; ++k) {
-                layer[i][j]->weight.push_back(dis(rd));
-                layer[i][j]->weight_delta.push_back(dis(rd));
+                layer[i][j]->weight.push_back(dis(rd) * res);
+                layer[i][j]->weight_delta.push_back(0.0);
                 layer[i][j]->v_weight_delta.push_back(0.0);
                 layer[i][j]->s_weight_delta.push_back(0.0);
             }
