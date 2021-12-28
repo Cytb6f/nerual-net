@@ -11,6 +11,7 @@ const std::string       costfile2 = "cost2.txt";        //成本数据地址
 const std::string       costfile3 = "cost3.txt";        //成本数据地址
 const std::string       costfile4 = "cost4.txt";        //成本数据地址
 
+//一些超参数
 const double alpha    =  0.001;
 const int    trainnum =  5000;
 std::vector<unsigned long> layernode= {2, 6,16, 1};
