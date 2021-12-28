@@ -24,7 +24,7 @@ void f1() {
 	bpnn.set_layernode(layernode);
 	bpnn.set_alpha(alpha);
 	bpnn.train(trainnum, (train_type)1);
-	bpnn.download(costfile1);
+	bpnn.download_cost(costfile1);
 	return;
 }
 void f2() {
@@ -34,7 +34,7 @@ void f2() {
 	bpnn.set_layernode(layernode);
 	bpnn.set_alpha(alpha);
 	bpnn.train(trainnum, (train_type)2);
-	bpnn.download(costfile2);
+	bpnn.download_cost(costfile2);
 	return;
 }
 void f3() {
@@ -44,7 +44,7 @@ void f3() {
 	bpnn.set_layernode(layernode);
 	bpnn.set_alpha(alpha);
 	bpnn.train(trainnum, (train_type)3);
-	bpnn.download(costfile3);
+	bpnn.download_cost(costfile3);
 	return;
 }
 void f4() {
@@ -54,7 +54,7 @@ void f4() {
 	bpnn.set_layernode(layernode);
 	bpnn.set_alpha(alpha);
 	bpnn.train(trainnum, (train_type)4);
-	bpnn.download(costfile4);
+	bpnn.download_cost(costfile4);
 	return;
 }
 

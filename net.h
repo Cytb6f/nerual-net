@@ -81,6 +81,9 @@ public:
     bool load(std::string filename);
     bool load_trainset(std::string filename);
     bool load_testset(std::string filename);
+    bool download_cost(std::string filename);
+    bool download_logo(std::string filename);
+    bool download_net(std::string filename);
     bool download(std::string filename);
     bool init();
     bool train(int num,train_type type);
@@ -107,7 +110,7 @@ void net::train_normalization(void) {
         for (auto &b : a.in)
             mean += b;
     }
-    mean /= trainset.size() * (trainset[0].in.size());
+    mean /= double(trainset.size() * (trainset[0].in.size()));
     for (auto &a : trainset) {
         for (auto &b : a.in)
             b -= mean;
@@ -118,7 +121,7 @@ void net::train_normalization(void) {
         for (auto &b : a.in)
             var += b*b;
     }
-    var /= trainset.size() * (trainset[0].in.size());
+    var /= double(trainset.size() * (trainset[0].in.size()));
     for (auto &a : trainset) {
         for (auto &b : a.in)
             b /= var;
@@ -170,13 +173,27 @@ bool net::load_testset(std::string filename) {
     }
     return true;
 }
-bool net::download(std::string filename) {
+bool net::download_cost(std::string filename) {
     std::ofstream os;
     os.open(filename);
     os << std::setprecision(9) << std::endl;
     for (auto a : costsum)
         os << a << std::endl;
     os.close();
+    return true;
+}
+bool net::download_logo(std::string filename) {
+    std::ofstream os;
+    os.open(filename);
+    return true;
+}
+bool net::download_net(std::string filename) {
+    std::ofstream os;
+    os.open(filename);
+    os << std::setprecision(9) << std::endl;
+    return true;
+}
+bool net::download(std::string filename) {
     return true;
 }
 bool net::init() {
