@@ -143,11 +143,13 @@
     <ClInclude Include="net.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="net.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="cost.txt" />
+    <Text Include="pre.txt" />
     <Text Include="readme.txt" />
+    <Text Include="test.txt" />
     <Text Include="train.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

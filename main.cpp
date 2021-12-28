@@ -4,15 +4,17 @@
 
 
 const std::string      trainfile = "train.txt";       //训练数据地址
-const std::string        prefile = "pre.txt";         //预测数据地址
+const std::string       testfile = "test.txt";        //预测数据地址
+const std::string        prefile = "pre.txt";         //预测结果地址
 const std::string       logofile = "logo.txt";        //日志数据地址
 const std::string       costfile1 = "cost1.txt";        //成本数据地址
 const std::string       costfile2 = "cost2.txt";        //成本数据地址
 const std::string       costfile3 = "cost3.txt";        //成本数据地址
 const std::string       costfile4 = "cost4.txt";        //成本数据地址
 
+//一些超参数
 const double alpha    =  0.001;
-const int    trainnum =  5000;
+const int    trainnum =  7300;
 std::vector<unsigned long> layernode= {2, 6,16, 1};
 
 void f1() {

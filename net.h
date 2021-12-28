@@ -160,7 +160,7 @@ bool net::download(std::string filename) {
 }
 bool net::init() {
     std::mt19937 rd;
-    rd.seed(1);
+    rd.seed(3);
     std::uniform_real_distribution<double> dis(-0.5, 0.5);
 
     for (int i = 0; i < layernum; ++i) {
@@ -244,10 +244,8 @@ bool net::train(int num,  train_type type) {
                             layer[i][j]->factor += layer[i][j]->weight[k] *
                                 layer[i + 1][k]->factor * d_relu(layer[i + 1][k]->value);
                         }
-                    }
-                   
-                }
-               
+                    }                  
+                }             
                 /*-----------------------------计算梯度-----------------------------*/
                 for (int j = 0; j < layernode[i]; ++j) {                   
                     layer[i][j]->bias_delta -= layer[i][j]->factor;
@@ -317,7 +315,41 @@ bool net::train(int num,  train_type type) {
 bool net::train(double maxcost) {
     return true;
 }
-bool prediction(std::string filename) {
+bool net::prediction(std::string filename) {
+    for (int cnt = 0; cnt < testset.size(); ++cnt) {
+        /*-----------------------------填充输入层-----------------------------*/
+        std::vector<double> input = testset[cnt].in;
+        std::vector<double>* output = &(testset[cnt].out);
+        for (int i = 0; i < input.size(); ++i) {
+            layer[0][i]->value = input[i];
+        }
+        /*-----------------------------正向传播-----------------------------*/
+        for (int i = 1; i < layernum; ++i) {
+            for (int j = 0; j < layernode[i]; ++j) {
+                double u = 0.0;
+                for (int k = 0; k < layernode[i - 1]; ++k) {
+                    u += layer[i - 1][k]->value * layer[i - 1][k]->weight[j];
+                }
+                u -= layer[i][j]->bias;
+                if (i + 1 == layernum) {
+                    layer[i][j]->value = sigmoid(u);
+                    output->push_back(layer[i][j]->value);
+                }
+                else
+                    layer[i][j]->value = relu(u);
+            }
+        }
+    }
+    std::ofstream os;
+    os.open(filename);
+    os << std::setprecision(4) << std::endl;
+    for (auto a : testset) {
+        for (auto b : a.in)
+            os << b << "  ";
+        for (auto b : a.out)
+            os << b << std::endl;
+    }
+    os.close();
     return true;
 }
 void net::destroy(void) {
