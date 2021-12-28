@@ -17,3 +17,18 @@ title('RMSprop');
 figure;
 plot(M4);
 title('Adma');
+
+figure;
+plot(M1);
+hold on;
+
+plot(M2);
+hold on;
+
+plot(M3);
+hold on;
+
+plot(M4);
+hold on;
+
+legend('Grad','Momentum','RMSprop','Adma') ;
