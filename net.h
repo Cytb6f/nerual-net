@@ -40,8 +40,9 @@ private:
     /*-----------超参数-----------*/
     double alpha = 0.2;                                         //学习率
     double beta1 = 0, beta2 = 0, epsilon = 0;                   //adma算法参数
-    double d_beta1=1, s_beta2=1;                                    //作偏差修正用
+    double d_beta1=1, s_beta2=1;                                //作偏差修正用
     double lambada = 0;                                         //正则化参数
+    double study_lecay = 0.0;                                   //学习率衰减参数
     u32 mini_batch_size = 0;                                    //mini_batch
     u32 layernum = 4;                                           //层数
     std::vector<u32>  layernode;                                //每层节点个数
@@ -71,6 +72,7 @@ public:
     void set_beta2(double res) { beta2 = res; return; }
     void set_epsilon(double res) { epsilon = res; return; }
     void set_lambada(double res) { lambada = res; return; }
+    void set_study_lecay(double res) { study_lecay = res; return; }
     void set_layernum(u32 res) { layernum = res; return; }
     void set_layernode(std::vector<u32> res) { layernode = res; return; }
     void set_mini_batch_size(double res) { mini_batch_size = res; return; }
